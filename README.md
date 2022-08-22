@@ -1,6 +1,6 @@
 # Magic
 
-**TODO: Add description**
+Simple Elixir bindings to libmagic
 
 ## Installation
 

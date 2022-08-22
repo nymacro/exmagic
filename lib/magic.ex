@@ -3,10 +3,12 @@ defmodule Magic do
   Documentation for `Magic`.
   """
 
+  @compile {:autoload, false}
   @on_load :init
 
   def init do
-    :ok = :erlang.load_nif('./priv/magic', 0)
+    path = :filename.join(:code.priv_dir(:exmagic), 'magic')
+    :ok = :erlang.load_nif(path, 0)
   end
 
   def create do
@@ -34,7 +36,7 @@ defmodule Magic do
       {:reply, Magic.buffer(state, binary), state}
     end
 
-    def start do
+    def start(_, _) do
       GenServer.start(Server, 0, name: __MODULE__)
     end
 
